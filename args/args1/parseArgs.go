@@ -1,21 +1,26 @@
-package main
+package args
 
 import (
 	"fmt"
-	"os"
-	"reflect"
 )
+
+struct Args {
+
+}
+
 
 const HelpMessage  = "help message"
 
-func GetArgs() (args []string)   {
-	args = os.Args[1:]
+func GetArgs(OSArgs []string) (args []string)   {
+	args = OSArgs[1:]
 	return
 }
 
 func PrintHelpMessage()  {
 	fmt.Println(HelpMessage)
 }
+
+
 
 func IterateArgs( args []string) ( m2  map[string]interface{})  {
 	Index := 0
@@ -28,7 +33,7 @@ func IterateArgs( args []string) ( m2  map[string]interface{})  {
 
 func main()  {
 
-	fmt.Println(reflect.TypeOf(GetArgs()[0]))
-	fmt.Println(reflect.TypeOf(GetArgs()[1]))
+	fmt.Println("https://golang.org/pkg/regexp/")
+	fmt.Println("d")
 
 }
