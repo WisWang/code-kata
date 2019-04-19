@@ -29,9 +29,22 @@ func MatchArg(arg string) bool {
 	return false
 }
 
-func IterateArgs( args []string) ( ArgsMap  map[string]string, err error)  {
+func MatchSchema(arg string) bool {
+	if match,_ := regexp.MatchString(`^-[0-9]`,arg); match{
+		return true
+	}
+	if match,_ := regexp.MatchString(`^\W`,arg); match{
+		return false
+	}
+	return true
+}
+
+func IterateArgs( args []string) ( ArgsMap  map[string]interface{}, err error)  {
 	index := 0
 	for(index < len(args)){
+		if MatchArg(args[index]){
+			ArgsMap[args[index]] = ""
+		}
 
 		index ++
 	}

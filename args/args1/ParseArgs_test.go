@@ -31,10 +31,26 @@ func TestMatchArg(t *testing.T){
 	}
 }
 
-func TestIterateArgs(t *testing.T)  {
-	RealArgs := []string{"-", "-p", "8080", "-d", "/opt/logs"}
-	if ArgsMap ,err:= IterateArgs(RealArgs);err == nil{
-
+func TestMatchSchema(t *testing.T) {
+	ShouldMatchSchemas := []string{"-5,-3", "-4","false,node"}
+	ShouldNotMatchSchemas := []string{"-d","-h"}
+	var arg string
+	for _,arg = range ShouldMatchSchemas{
+		if !MatchSchema(arg){
+			t.Errorf("%s should match\n", arg)
+		}
+	}
+	for _,arg = range ShouldNotMatchSchemas{
+		if MatchSchema(arg){
+			t.Errorf("%s should not match\n", arg)
+		}
 	}
 }
+
+//func TestIterateArgs(t *testing.T)  {
+//	RealArgs := []string{"-", "-p", "8080", "-d", "/opt/logs"}
+//	if ArgsMap ,err:= IterateArgs(RealArgs);err == nil{
+//
+//	}
+//}
 
