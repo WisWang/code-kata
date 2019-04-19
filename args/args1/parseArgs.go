@@ -1,10 +1,12 @@
-package args
+package args1
 
 import (
 	"fmt"
+	"regexp"
 )
 
-struct Args {
+type Args struct {
+	name rune
 
 }
 
@@ -20,15 +22,20 @@ func PrintHelpMessage()  {
 	fmt.Println(HelpMessage)
 }
 
-
-
-func IterateArgs( args []string) ( m2  map[string]interface{})  {
-	Index := 0
-	for(Index < len(args)){
-
-		Index ++
+func MatchArg(arg string) bool {
+	if match,_ := regexp.MatchString(`-([a-zA-Z]$)`,arg); match{
+		return true
 	}
-	return
+	return false
+}
+
+func IterateArgs( args []string) ( ArgsMap  map[string]string, err error)  {
+	index := 0
+	for(index < len(args)){
+
+		index ++
+	}
+	return ArgsMap, nil
 }
 
 func main()  {
