@@ -3,6 +3,7 @@ package args1
 import (
 	"testing"
 	"reflect"
+
 )
 
 func TestGetArgs(t *testing.T) {
@@ -33,7 +34,7 @@ func TestMatchArg(t *testing.T){
 
 func TestMatchSchema(t *testing.T) {
 	ShouldMatchSchemas := []string{"-5,-3", "-4","false,node"}
-	ShouldNotMatchSchemas := []string{"-d","-h"}
+	ShouldNotMatchSchemas := []string{"-d","-h", "-node"}
 	var arg string
 	for _,arg = range ShouldMatchSchemas{
 		if !MatchSchema(arg){
@@ -47,10 +48,17 @@ func TestMatchSchema(t *testing.T) {
 	}
 }
 
-//func TestIterateArgs(t *testing.T)  {
-//	RealArgs := []string{"-", "-p", "8080", "-d", "/opt/logs"}
-//	if ArgsMap ,err:= IterateArgs(RealArgs);err == nil{
-//
-//	}
-//}
+func TestIterateArgs(t *testing.T)  {
+	RealArgs := []string{"-l", "-p", "8080", "-d", "/opt/logs"}
+	expectMap := map[string]interface{}{
+		"l" : "",
+		"p" : "8080",
+		"d" : "/opt/logs",
+	}
+	if ArgsMap ,err:= IterateArgs(RealArgs);err == ""{
+		if !reflect.DeepEqual(ArgsMap, expectMap){
+			t.Errorf("ArgsMap: %s is not equal expectMap: %s", ArgsMap, expectMap)
+		}
+	}
+}
 
