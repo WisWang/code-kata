@@ -1,10 +1,24 @@
-package demo
+package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+func GenMap() (M map[string]interface{}) {
+	M= make(map[string]interface{})
+	M["nar"] = "sheme"
+	return
+}
 
 func main()  {
-	l1 := []string{"12","123"}
-	l2 := []string{"12","123"}
-	fmt.Println(l1)
-	fmt.Println(l2)
+	fmt.Println("w")
+	l := []string{
+		"12", "123",
+	}
+	s := "id"
+	fmt.Println(strings.Replace(s,"i","",-1))
+	fmt.Println(GenMap())
+	fmt.Println(len(l))
+	fmt.Println(l[1])
 }
