@@ -48,12 +48,11 @@ func IterateArgs( args []string) ( ArgsMap  map[string]interface{}, err string) 
 	ArgsMap = make(map[string]interface{})
 	for(index < len(args)){
 		if MatchArg(args[index]) {
-			//if index+1 >= len(args){
-			//	ArgsMap[strings.Replace(args[index],"-","",-1)] = ""
-			//	index ++
-			//	continue
-			//}
-			if MatchSchema(args[index+1])  {
+			if index+1 >= len(args){
+				ArgsMap[strings.Replace(args[index],"-","",-1)] = ""
+				break
+			}
+			if MatchSchema(args[index+1]) {
 				ArgsMap[strings.Replace(args[index],"-","",-1)] = args[index+1]
 				index ++
 			}else {
@@ -63,6 +62,30 @@ func IterateArgs( args []string) ( ArgsMap  map[string]interface{}, err string) 
 		index ++
 	}
 	return ArgsMap, ""
+}
+
+func ProcessMap(ArgsMap  map[string]interface{})  {
+	for arg,schema:= range ArgsMap{
+		switch arg {
+		case "h":
+			h(schema)
+		case "p":
+			p(schema)
+		case "l":
+			l(schema)
+		}
+	}
+}
+
+func h(schema interface{})  {
+
+}
+func p(schema interface{})  {
+
+}
+
+func l(schema interface{})  {
+
 }
 
 func main()  {
