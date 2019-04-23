@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+	"strconv"
 )
 
 type Args struct {
@@ -43,12 +44,12 @@ func MatchSchema(arg string) bool {
 	return true
 }
 
-func IterateArgs( args []string) ( ArgsMap  map[string]interface{}, err string)  {
+func IterateArgs( args []string) ( ArgsMap  map[string]string, err string)  {
 	index := 0
-	ArgsMap = make(map[string]interface{})
+	ArgsMap = make(map[string]string)
 	for(index < len(args)){
 		if MatchArg(args[index]) {
-			if index+1 >= len(args){
+			if index+1 == len(args){
 				ArgsMap[strings.Replace(args[index],"-","",-1)] = ""
 				break
 			}
@@ -64,32 +65,53 @@ func IterateArgs( args []string) ( ArgsMap  map[string]interface{}, err string) 
 	return ArgsMap, ""
 }
 
-func ProcessMap(ArgsMap  map[string]interface{})  {
+func ProcessMap(ArgsMap  map[string]string) (err string) {
 	for arg,schema:= range ArgsMap{
 		switch arg {
 		case "h":
-			h(schema)
+			CommandD(schema)
 		case "p":
-			p(schema)
+			CommandP(schema)
 		case "l":
-			l(schema)
+			CommandL(schema)
+		default:
+			err = fmt.Sprintf("not support flags: %s", arg)
+			return
 		}
 	}
+	return ""
 }
 
-func h(schema interface{})  {
 
+
+func CommandD(schema string) (commandErr string) {
+	fmt.Printf("d function process %s\n", schema)
+	return ""
 }
-func p(schema interface{})  {
-
+func CommandP(schema string) (commandErr string) {
+	portnumber,err := strconv.Atoi(schema)
+	if err != nil || portnumber < 0 {
+		commandErr = "p function only support positive int"
+		return
+	}
+	fmt.Printf("CommandP function process %s\n", schema)
+	return ""
 }
 
-func l(schema interface{})  {
-
+func CommandL(schema string) (commandErr string) {
+	if schema == ""{
+		schema = "true"
+	}
+	logging,err := strconv.ParseBool(schema)
+	if err != nil {
+		commandErr = "CommandL function only support bool"
+		return
+	}
+	fmt.Printf("l function process %t\n", logging)
+	return ""
 }
 
 func main()  {
-
 	fmt.Println("https://golang.org/pkg/regexp/")
 	fmt.Println("d")
 

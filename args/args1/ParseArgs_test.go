@@ -50,17 +50,46 @@ func TestMatchSchema(t *testing.T) {
 
 func TestIterateArgs(t *testing.T)  {
 	RealArgs := []string{"-l", "-p", "8080", "-d", "/opt/logs"}
-	expectMap := map[string]interface{}{
+	expectMap := map[string]string{
 		"l" : "",
 		"p" : "8080",
 		"d" : "/opt/logs",
 	}
 	if ArgsMap ,err:= IterateArgs(RealArgs);err == ""{
 		if !reflect.DeepEqual(ArgsMap, expectMap){
-			t.Errorf("ArgsMap: %s is not equal expectMap: %s", ArgsMap, expectMap)
+			t.Errorf("ArgsMap: %s is not equal expectMap: %s\n", ArgsMap, expectMap)
+		}
+	}
+}
+
+func TestCommandP(t *testing.T)  {
+	errorSchemas := []string{"-12","nd","a2"}
+	rightSchemas := []string{"80","8080"}
+	for _, schema := range errorSchemas{
+		if err := CommandP(schema); err == ""{
+			t.Errorf("schema: %s is not a valid schema for function p", schema)
+		}
+	}
+	for _, schema := range rightSchemas{
+		if err := CommandP(schema); err != ""{
+			t.Errorf("schema: %s is a valid schema for function p", schema)
 		}
 	}
 }
 
 
+func TestCommandL(t *testing.T)  {
+	errorSchemas := []string{"-12","nd","a2"}
+	rightSchemas := []string{"true","false",""}
+	for _, schema := range errorSchemas{
+		if err := CommandL(schema); err == ""{
+			t.Errorf("schema: %s is not a valid schema for function p", schema)
+		}
+	}
+	for _, schema := range rightSchemas{
+		if err := CommandL(schema); err != ""{
+			t.Errorf("schema: %s is a valid schema for function p", schema)
+		}
+	}
+}
 
