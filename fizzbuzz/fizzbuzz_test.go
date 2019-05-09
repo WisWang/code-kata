@@ -18,7 +18,6 @@ func TestMagicFizz(t *testing.T)  {
 	}
 }
 
-
 func TestMagicBuzz(t *testing.T)  {
 	testCases := []int{
 		5,
@@ -31,7 +30,6 @@ func TestMagicBuzz(t *testing.T)  {
 		}
 	}
 }
-
 
 func TestMagicFizzBuzz(t *testing.T)  {
 	testCases := []int{
