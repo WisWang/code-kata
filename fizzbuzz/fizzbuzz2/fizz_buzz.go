@@ -29,13 +29,10 @@ func (f FizzBuzz) isFizzBuzz() bool {
 	return f.isFizz() && f.isBuzz()
 }
 
-func (f FizzBuzz) contains3() bool {
-	return strings.Contains(f.String(), "3")
+func (f FizzBuzz) contains(sub string) bool {
+	return strings.Contains(f.String(), sub)
 }
 
-func (f FizzBuzz) contains5() bool {
-	return strings.Contains(f.String(), "5")
-}
 
 func (f FizzBuzz) Run() string {
 	if f.isFizzBuzz() {
@@ -47,16 +44,11 @@ func (f FizzBuzz) Run() string {
 	if f.isBuzz() {
 		return buzz
 	}
-	if f.contains3() {
+	if f.contains("3") {
 		return fizz
 	}
-	if f.contains5() {
+	if f.contains("5") {
 		return buzz
 	}
 	return f.String()
-}
-
-func Magic(i int) string {
-	f := FizzBuzz(i)
-	return f.Run()
 }
