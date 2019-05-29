@@ -25,7 +25,7 @@ func MatchArg(arg string) bool {
 	return false
 }
 
-func MatchSchema(arg string) bool {
+func matchSchema(arg string) bool {
 	if match, _ := regexp.MatchString(`^-[0-9]`, arg); match {
 		return true
 	}
@@ -47,7 +47,7 @@ func IterateArgs(args []string) (ArgsMap map[string]string, err string) {
 				ArgsMap[strings.Replace(args[index], "-", "", -1)] = ""
 				break
 			}
-			if MatchSchema(args[index+1]) {
+			if matchSchema(args[index+1]) {
 				ArgsMap[strings.Replace(args[index], "-", "", -1)] = args[index+1]
 				index++
 			} else {

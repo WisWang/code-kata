@@ -45,3 +45,4 @@ func (f FizzBuzz) Run() string {
 	}
 	return f.Strings()
 }
+

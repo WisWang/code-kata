@@ -1,9 +1,9 @@
 package fizzbuzz4
 
 import (
-	"testing"
-	"gotest.tools/assert"
 	"fmt"
+	"gotest.tools/assert"
+	"testing"
 )
 
 func TestFizzBuzz(t *testing.T) {
@@ -26,3 +26,4 @@ func TestFizzBuzz(t *testing.T) {
 		assert.Equal(t, f.Run(), testcase.result, fmt.Sprint(testcase))
 	}
 }
+

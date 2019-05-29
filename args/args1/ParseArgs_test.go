@@ -37,12 +37,12 @@ func TestMatchSchema(t *testing.T) {
 	ShouldNotMatchSchemas := []string{"-d", "-h", "-node"}
 	var arg string
 	for _, arg = range ShouldMatchSchemas {
-		if !MatchSchema(arg) {
+		if !matchSchema(arg) {
 			t.Errorf("%s should match\n", arg)
 		}
 	}
 	for _, arg = range ShouldNotMatchSchemas {
-		if MatchSchema(arg) {
+		if matchSchema(arg) {
 			t.Errorf("%s should not match\n", arg)
 		}
 	}

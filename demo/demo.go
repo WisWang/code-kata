@@ -2,14 +2,24 @@ package main
 
 import (
 	"fmt"
-
+	"reflect"
 )
 
-type FizzBuzz int
+type m struct {
+	lines []string
+}
 
+
+func ms() (result string) {
+	return
+}
 
 func main()  {
-	n := 3
-	fmt.Println(FizzBuzz(93)%n)
-
+	fmt.Println("hello world")
+	s := [][]string{{},{"12","13"}}
+	fmt.Println(s)
+	a := ms()
+	fmt.Println("12,",a)
+	fmt.Print(reflect.TypeOf(a))
+	fmt.Print(a == "")
 }
