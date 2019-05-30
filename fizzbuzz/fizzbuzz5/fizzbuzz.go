@@ -6,9 +6,9 @@ import (
 )
 
 const (
-	Fizz     = "fizz"
-	Buzz     = "buzz"
-	FizzBuzz = "fizzbuzz"
+	fizz     = "fizz"
+	buzz     = "buzz"
+	fizzbuzz = "fizzbuzz"
 )
 
 type Game struct {
@@ -39,17 +39,13 @@ func (f Game) isSpecial() bool {
 }
 
 func (f Game) special() (result string) {
-	if f.isSpecialNumber(3) {
-		result += Fizz
+	if f.exactDivid(3) || f.contains(3) {
+		result += fizz
 	}
-	if f.isSpecialNumber(5) {
-		result += Buzz
+	if f.exactDivid(5) || f.contains(5) {
+		result += buzz
 	}
 	return result
-}
-
-func (f Game) isSpecialNumber(number int) bool {
-	return f.exactDivid(number) || f.contains(number)
 }
 
 func (f Game) exactDivid(dividend int) bool {

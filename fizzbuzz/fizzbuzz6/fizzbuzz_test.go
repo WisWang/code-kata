@@ -1,7 +1,6 @@
-package fizzbuzz5
+package fizzbuzz6
 
 import (
-	"fmt"
 	"gotest.tools/assert"
 	"testing"
 )
@@ -18,14 +17,14 @@ func Test(t *testing.T) {
 		{5, buzz},
 		{10, buzz},
 		{15, fizzbuzz},
-		{51, fizzbuzz},
-		{35, fizzbuzz},
 		{13, fizz},
-		{31, fizz},
-		{59, buzz},
+		{23, fizz},
+		{52, buzz},
+		{53, fizzbuzz},
+		{51, fizzbuzz},
 	}
 	for _, test := range tests {
-		f := Game{test.input}
-		assert.Equal(t, f.Magic(), test.output,fmt.Sprint(test))
+		g := Game{test.input}
+		assert.Equal(t, g.Run(), test.output)
 	}
 }
