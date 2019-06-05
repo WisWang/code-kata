@@ -1,4 +1,4 @@
-package fizzbuzz8
+package fizzbuzz9
 
 import (
 	"fmt"
@@ -15,15 +15,14 @@ func Test(t *testing.T) {
 		{2, "2"},
 		{3, fizz},
 		{6, fizz},
-		{13, fizz},
-		{23, fizz},
 		{5, buzz},
-		{52, buzz},
-		{59, buzz},
-		{51, fizzbuzz},
 		{10, buzz},
 		{15, fizzbuzz},
-		{30, fizzbuzz},
+		{13, fizz},
+		{23, fizz},
+		{52, buzz},
+		{51, fizzbuzz},
+		{35, fizzbuzz},
 	}
 	for _, test := range tests {
 		g := Game{test.input}
