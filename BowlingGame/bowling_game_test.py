@@ -18,19 +18,28 @@ class TestBowlingGame(unittest.TestCase):
         self.g = BowlingGame()
 
     def test_game_all_zero(self):
-        for i in range(20):
-            self.g.roll(0)
+        self.roll_many(20, 0)
         self.assertEqual(0, self.g.score())
 
     def test_game_all_one(self):
-        for i in range(20):
-            self.g.roll(1)
+        self.roll_many(20, 1)
         self.assertEqual(20, self.g.score())
 
+    def roll_many(self, times, pin):
+        for i in range(times):
+            self.g.roll(pin)
 
-    # def test_game_first_strike(self):
-    #     self.g.roll(5)
-    #     self.g.roll(5)
-    #     for i in range(18):
-    #         self.g.roll(1)
-    #     self.assertEqual(29, self.g.score())
+    def test_game_first_strike(self):
+        self.g.roll(4)
+        self.g.roll(6)
+        self.roll_many(18, 1)
+        self.assertEqual(29, self.g.score())
+
+    def test_perfect_game(self):
+        self.roll_many(12, 10)
+        self.assertEqual(300, self.g.score())
+
+    def test_game_first_two_strike(self):
+        self.roll_many(4, 5)
+        self.roll_many(16, 1)
+        self.assertEqual(42, self.g.score())
